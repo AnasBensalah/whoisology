@@ -6,7 +6,7 @@ module Whoisology
   class Api
 
     def initialize(api_key=nil, options={})
-      @uri = "https://whoisology.com/api"
+      @base_uri = "https://whoisology.com/api"
       @api_key = api_key
 
       # TODO - allow proxy configuration here...
@@ -22,15 +22,19 @@ module Whoisology
           raise "Unable to continue... no api key!"
         end
       end
-
     end
 
     def credits
-      JSON.parse RestClient.get "#{@uri}?request=credits&auth=#{@api_key}"
+      JSON.parse RestClient.get "#{@base_uri}?request=credits&auth=#{@api_key}"
     end
 
     def test
-      "#{@uri}?request=test&archive={Archive}&level={Level}&field={Field}&domain={Domain}&auth={key}"
+      raise "not implemented!"
+      #JSON.parse RestClient.get "#{@base_uri}?request=test&&level=admin&field=email&domain={Domain}&auth=#{@api_key}"
+    end
+
+    def ping
+      JSON.parse RestClient.get("#{@base_uri}?request=ping&level=admin&field=email&value=dns­admin@google.com&auth=#{@api_key}")
     end
 
   end
