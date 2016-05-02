@@ -33,9 +33,15 @@ module Whoisology
       #JSON.parse RestClient.get "#{@base_uri}?request=test&&level=admin&field=email&domain={Domain}&auth=#{@api_key}"
     end
 
-    def ping(search_term)
-      endpoint = "#{@base_uri}?request=ping&level=admin&field=email&value=#{search_term}&auth=#{@api_key}"
-      JSON.parse RestClient.get(endpoint)
+    # PING command
+    #
+    # entity_type can be one of... email
+    def ping(entity_type,search_term)
+
+      endpoint = "#{@base_uri}?request=ping&level=admin&field=#{type}&value=#{search_term}&auth=#{@api_key}"
+      result = JSON.parse(RestClient.get(endpoint))
+
+    result
     end
 
 
