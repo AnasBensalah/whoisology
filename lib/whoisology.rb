@@ -38,7 +38,7 @@ module Whoisology
     # entity_type can be one of... email
     def ping(entity_type,search_term)
 
-      endpoint = "#{@base_uri}?request=ping&level=admin&field=#{type}&value=#{search_term}&auth=#{@api_key}"
+      endpoint = "#{@base_uri}?request=ping&level=admin&field=#{entity_type}&value=#{search_term}&auth=#{@api_key}"
       result = JSON.parse(RestClient.get(endpoint))
 
     result
